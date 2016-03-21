@@ -1,0 +1,6 @@
+activeLaunchTarget=org.eclipse.remote.LocalServices\:Local
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:Mtrx_Chn_Mltpn,org.eclipse.launchbar.core.descriptorType.default\:Lngst_Cmn_Sbsqnc,org.eclipse.launchbar.core.descriptorType.default\:AA,org.eclipse.launchbar.core.descriptorType.default\:Array
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:AA/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Lngst_Cmn_Sbsqnc/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Lngst_Cmn_Sbsqnc/activeLaunchTarget=org.eclipse.remote.LocalServices\:Local

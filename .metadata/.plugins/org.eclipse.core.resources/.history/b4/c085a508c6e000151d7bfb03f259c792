@@ -1,0 +1,152 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <inttypes.h>
+
+#define MAXN 10000000
+
+typedef struct {
+  int left, right, lvl, val;
+} Node;
+
+Node A[MAXN];
+int N, M, R;
+int leaf;
+
+void init() {
+  N = R = 1;
+  for (int i = 0; i < MAXN; ++i) {
+    A[i].lvl = A[i].left = A[i].right = 0;
+    A[i].val = -1;
+  }
+}
+
+void print() {
+  printf("R: %"PRId64"\n", R);
+  for (int i = 1; i <=N; ++i) {
+    printf("%"PRId64" %"PRId64" %"PRId64" %"PRId64"\n", A[i].left, A[i].right, A[i].lvl, A[i].val);
+  } puts("");
+}
+
+int skew(int root) {
+  int left = A[root].left;
+  if (A[left].lvl == A[root].lvl) {
+    A[root].left = A[left].right;
+    A[left].right = root;
+    return left;
+  }
+  return root;
+}
+
+int split(int root) {
+  int right = A[root].right;
+  int rright = A[right].right;
+  if (A[rright].lvl == A[root].lvl) {
+    A[root].right = A[right].left;
+    A[right].left = root;
+    ++A[right].lvl;
+    return right;
+  }
+  return root;
+}
+
+int insert(int root, int val) {
+
+	if (A[root].val == -1)
+		A[root].val=val;
+	else if (A[root].val < val) // <= if duplicate ok
+	insert(A[root].right, val);
+	else if (A[root].val > val) // <= if duplicate ok
+	insert(A[root].left, val);
+  // insert a node with key value val in the
+  // (sub)tree rooted at root
+int k=skew(root);
+int j=split(k);
+printf("INSERTED");
+print();
+  // return the index of the (possibly modified)
+  // root of the subtree
+  return j;
+}
+
+
+int search(int root, int val) {
+  // return 1 if a node with key value val
+  // is in the (sub)tree rooted at root, and
+  // 0 otherwise.
+}
+
+int __delete(int root, int val) {
+  if (A[root].val == -1) return 0;
+
+  if (val < A[root].val) {
+    A[root].left = __delete(A[root].left, val);
+  } else if (val > A[root].val) {
+    A[root].right = __delete(A[root].right, val);
+  } else {
+    if (A[root].left) {
+      for (leaf = A[root].left; A[leaf].right; leaf = A[leaf].right);
+      A[root].left = __delete(A[root].left, A[leaf].val);
+      A[root].val = A[leaf].val;
+    } else if (A[root].right) {
+      for (leaf = A[root].right; A[leaf].left; leaf = A[leaf].left);
+      A[root].right = __delete(A[root].right, A[leaf].val);
+      A[root].val = A[leaf].val;
+    } else {
+      leaf = root;
+      return 0;
+    }
+  }
+  if (A[A[root].left].lvl <= A[root].lvl - 2 ||
+      A[A[root].right].lvl <= A[root].lvl - 2) {
+    --A[root].lvl;
+    if (A[A[root].right].lvl > A[root].lvl)
+      A[A[root].right].lvl = A[root].lvl;
+    root = skew(root);
+    A[root].right = skew(A[root].right);
+    A[A[root].right].right = skew(A[A[root].right].right);
+    root = split(root);
+    A[root].right = split(A[root].right);
+    return root;
+  }
+  return root;
+}
+
+int fixPointer(int root, int val, int leaf) {
+  if (A[root].val == -1) return 0;
+  if (A[root].val == val) return leaf;
+  if (val < A[root].val) A[root].left = fixPointer(A[root].left, val, leaf);
+  else A[root].right = fixPointer(A[root].right, val, leaf);
+  return root;
+}
+
+void delete(int val) {
+  leaf = 0;
+  R = __delete(R, val);
+
+  // the following reuses space, but not necessary for this
+  // homework since the array is large enough.
+  if (leaf) {
+    if (leaf != N-1) { // leaf == N-1 is possible
+      R = fixPointer(R, A[N-1].val, leaf);
+      A[leaf] = A[N-1];
+    }
+    --N;
+  }
+}
+
+int main() {
+  init();
+  scanf("%d6", &M);
+  int i;
+  for ( i = 0; i < M; ++i) {
+    int O, V;
+    scanf("%d, %d", &O, &V);
+    if (O == 0)
+    	R = insert(R, V);
+    else if (O == 1)
+    	delete(V);
+    else if (O == 2)
+    	printf("%d \n", search(R, V));
+  }
+  return 0;
+}

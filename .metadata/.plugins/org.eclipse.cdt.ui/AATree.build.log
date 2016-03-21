@@ -1,0 +1,15 @@
+17:07:19 **** Build of configuration Debug for project AATree ****
+make all 
+Building file: ../src/AATree.c
+Invoking: Cross GCC Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/AATree.d" -MT"src/AATree.o" -o "src/AATree.o" "../src/AATree.c"
+Finished building: ../src/AATree.c
+ 
+Building target: AATree
+Invoking: Cross GCC Linker
+gcc  -o "AATree"  ./src/AATree.o   
+Finished building target: AATree
+ 
+
+17:07:19 Build Finished (took 222ms)
+

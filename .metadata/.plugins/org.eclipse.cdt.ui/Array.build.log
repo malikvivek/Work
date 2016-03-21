@@ -1,0 +1,15 @@
+17:37:50 **** Incremental Build of configuration Debug for project Array ****
+make all 
+Building file: ../src/array.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/array.d" -MT"src/array.o" -o "src/array.o" "../src/array.c"
+Finished building: ../src/array.c
+ 
+Building target: Array
+Invoking: MacOS X C Linker
+gcc  -o "Array"  ./src/array.o   
+Finished building target: Array
+ 
+
+17:37:50 Build Finished (took 125ms)
+
