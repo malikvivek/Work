@@ -3,7 +3,7 @@
 //Copyright		: Copyright, Vivek Malik;2011
 //Created on	: 22-Sep-2011
 //Author		: Vivek Malik
-//Description	: Sorting an array using Exchange Sort algorithm and Exchange Sort Algorithm
+//Description	: Sorting an array using Bubble Sort algorithm and Exchange Sort Algorithm
 //////////////////////////////////////////////////////////////////////////////////////////
 
 #include<stdio.h>
