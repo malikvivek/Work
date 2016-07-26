@@ -16,11 +16,11 @@ public class SendSms {
              * with a few exceptions for e.g. Greek characters.  For a full list,
              * see:  http://bulksms.vsms.net/docs/eapi/submission/character_encoding/
              */
-            data += "username=" + URLEncoder.encode("vivekmalik", "ISO-8859-1");
-            data += "&password=" + URLEncoder.encode("project$123", "ISO-8859-1");
+            data += "username=" + URLEncoder.encode("username", "ISO-8859-1");
+            data += "&password=" + URLEncoder.encode("password", "ISO-8859-1");
             data += "&message=" + URLEncoder.encode("This is a test", "ISO-8859-1");
             data += "&want_report=1";
-            data += "&msisdn=918882065706";
+            data += "&msisdn=//phone number with country code eg:91xxxxxxxxxx";
 
             // Send data
             URL url = new URL("http://bulksms.vsms.net:5567/eapi/submission/send_sms/2/2.0");
