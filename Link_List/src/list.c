@@ -8,7 +8,7 @@
 //Functions		: 1. create_end()-to insert a node at the end.(No return value)
 //				  2. create_beg()-to insert a node in the begining.(No return value)
 //				  3. display()-to display the list.(No return value)
-//				  4. insert()-
+//				  4. insert()- to insert a new node at specified location
 /////////////////////////////////////////////////////////////////////////////////////////
 #include<stdio.h>
 #include<stdlib.h>
@@ -27,6 +27,7 @@ void delete_beg();
 void delete_end();
 void delete_pos();
 void reverse();
+void search(int);
 
 int main(){
 	int i,n;
@@ -45,6 +46,7 @@ int main(){
 //	delete_beg();
 //	delete_end();
 //	delete_pos();
+//	search(5);
 	printf("\n\nThe list is:");
 	display();
 	return(0);
@@ -183,4 +185,19 @@ void reverse(){
 		r->next=s;
 	}
 	start=r;
+}
+
+void search(int num){
+	int flag = 0;
+	struct list *temp;
+	temp=start;
+	while(temp!=NULL){
+		if(num==temp->data)
+			flag=1;
+		temp=temp->next;
+	}
+	if (flag==1)
+		printf("\nFound: %d", num);
+	else
+		printf("\nNot Found: %d", num);
 }
